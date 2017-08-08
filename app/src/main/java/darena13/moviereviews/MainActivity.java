@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -84,14 +83,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onError(Throwable e){
                 Toast.makeText(getApplicationContext(),"onError" + e, Toast.LENGTH_LONG).show();
-//                Log.e()
-                //handle error
             }
 
             @Override
             public void onComplete() {
                 Toast.makeText(getApplicationContext(),"onComplete", Toast.LENGTH_SHORT).show();
-
             }
 
         });

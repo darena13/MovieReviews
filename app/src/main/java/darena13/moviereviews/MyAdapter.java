@@ -1,5 +1,6 @@
 package darena13.moviereviews;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -10,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.net.URI;
 import java.util.List;
@@ -52,28 +55,23 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-//        TextView v = (TextView) LayoutInflater.from(parent.getContext())
-//                .inflate(R.layout.recycler_card, parent, false);
-//
-//        ViewHolder vh = new ViewHolder(v);
-//        return vh;
-
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
-        // Inflate the custom layout
         View contactView = inflater.inflate(R.layout.recycler_card, parent, false);
 
-        // Return a new holder instance
         ViewHolder viewHolder = new ViewHolder(contactView);
         return viewHolder;
     }
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-//        holder.picture.
+        Context imageContext = holder.picture.getContext();
+        String imageURL = mDataset.get(position).getMultimedia().getSrc();
+        Glide.with(imageContext).load(imageURL).placeholder(R.drawable.empty_pic_210x140).into(holder.picture);
+
         holder.title.setText(mDataset.get(position).getDisplayTitle());
-        holder.tags.setText(mDataset.get(position).getMpaaRating());
+        if (!(mDataset.get(position).getMpaaRating().equals(""))) holder.tags.setText(mDataset.get(position).getMpaaRating());
         holder.date.setText(mDataset.get(position).getPublicationDate());
         holder.headline.setText(mDataset.get(position).getHeadline());
         holder.summary.setText(mDataset.get(position).getSummaryShort());
