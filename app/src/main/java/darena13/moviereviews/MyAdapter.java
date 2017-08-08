@@ -1,8 +1,8 @@
 package darena13.moviereviews;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,10 +14,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
-import java.net.URI;
 import java.util.List;
 
-import darena13.moviereviews.Model.Response;
 import darena13.moviereviews.Model.Result;
 
 
@@ -71,7 +69,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         Glide.with(imageContext).load(imageURL).placeholder(R.drawable.empty_pic_210x140).into(holder.picture);
 
         holder.title.setText(mDataset.get(position).getDisplayTitle());
-        if (!(mDataset.get(position).getMpaaRating().equals(""))) holder.tags.setText(mDataset.get(position).getMpaaRating());
+
+        if (!(mDataset.get(position).getMpaaRating().equals(""))) {
+            holder.tags.setText(mDataset.get(position).getMpaaRating());
+        } else {
+            holder.tags.setBackgroundColor(Color.TRANSPARENT);
+        }
+
         holder.date.setText(mDataset.get(position).getPublicationDate());
         holder.headline.setText(mDataset.get(position).getHeadline());
         holder.summary.setText(mDataset.get(position).getSummaryShort());

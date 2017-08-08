@@ -1,19 +1,13 @@
 package darena13.moviereviews;
 
-import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
-import java.net.URI;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,8 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    private Button readMoreButton;
-
     private List<Result> reviews = new ArrayList<>();
     private NYTimesAPI networkAPI;
 
@@ -43,13 +35,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)
@@ -67,12 +52,13 @@ public class MainActivity extends AppCompatActivity {
         reviewsObservable.subscribe(new Observer<Response>(){
             @Override
             public void onSubscribe(Disposable d) {
-                Toast.makeText(getApplicationContext(),"onSubscribe", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(),"onSubscribe", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onNext(Response value) {
-                Toast.makeText(getApplicationContext(),"onNext", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(),"onNext", Toast.LENGTH_SHORT).show();
+
                 int size = value.getResults().size();
                 for (int i = 0; i < size; i++) {
                     reviews.add(value.getResults().get(i));
@@ -87,20 +73,24 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onComplete() {
-                Toast.makeText(getApplicationContext(),"onComplete", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(),"onComplete", Toast.LENGTH_SHORT).show();
             }
 
         });
 
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
-
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-
         mAdapter = new MyAdapter(reviews);
         mRecyclerView.setAdapter(mAdapter);
-
     }
 
     @Override

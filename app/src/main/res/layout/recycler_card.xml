@@ -50,8 +50,7 @@
                 android:layout_marginTop="15sp"
                 android:background="@color/colorNice"
                 android:padding="2sp"
-                android:text="PG-13"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/date"
@@ -63,7 +62,7 @@
                 android:layout_marginStart="20sp"
                 android:paddingTop="15sp"
                 android:text="10.10.2010"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/headline"

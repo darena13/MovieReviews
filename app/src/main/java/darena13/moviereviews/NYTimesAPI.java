@@ -10,8 +10,6 @@ import retrofit2.http.Header;
  */
 
 public interface NYTimesAPI {
-//    String END_POINT = "https://api.nytimes.com/svc/movies/v2/";
-
     @GET("reviews/all.json")
     Observable<Response> getReviews(@Header("api-key") String MyApiKey);
 }
