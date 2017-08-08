@@ -11,36 +11,47 @@ public class Result {
     @SerializedName("display_title")
     @Expose
     private String displayTitle;
+
     @SerializedName("sort_name")
     @Expose
     private String sortName;
+
     @SerializedName("mpaa_rating")
     @Expose
     private String mpaaRating;
+
     @SerializedName("critics_pick")
     @Expose
     private String criticsPick;
+
     @SerializedName("byline")
     @Expose
     private String byline;
+
     @SerializedName("headline")
     @Expose
     private String headline;
+
     @SerializedName("capsule_review")
     @Expose
     private String capsuleReview;
+
     @SerializedName("summary_short")
     @Expose
     private String summaryShort;
+
     @SerializedName("publication_date")
     @Expose
     private String publicationDate;
+
     @SerializedName("opening_date")
     @Expose
     private String openingDate;
+
     @SerializedName("date_updated")
     @Expose
     private String dateUpdated;
+
     @SerializedName("link")
     @Expose
     private Link link;
