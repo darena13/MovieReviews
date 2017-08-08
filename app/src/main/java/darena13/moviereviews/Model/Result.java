@@ -56,6 +56,10 @@ public class Result {
     @Expose
     private Link link;
 
+    @SerializedName("multimedia")
+    @Expose
+    private Multimedia multimedia;
+
     public String getDisplayTitle() {
         return displayTitle;
     }
@@ -150,5 +154,13 @@ public class Result {
 
     public void setLink(Link link) {
         this.link = link;
+}
+
+    public Multimedia getMultimedia() {
+        return multimedia;
+    }
+
+    public void setMultimedia(Multimedia multimedia) {
+        this.multimedia = multimedia;
     }
 }

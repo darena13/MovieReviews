@@ -11,9 +11,11 @@ public class Link {
     @SerializedName("type")
     @Expose
     private String type;
+
     @SerializedName("url")
     @Expose
     private String url;
+
     @SerializedName("suggested_link_text")
     @Expose
     private String suggestedLinkText;

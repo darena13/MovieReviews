@@ -1,6 +1,8 @@
 package darena13.moviereviews;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.net.URI;
 import java.util.List;
 
 import darena13.moviereviews.Model.Response;
@@ -68,6 +71,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
+//        holder.picture.
         holder.title.setText(mDataset.get(position).getDisplayTitle());
         holder.tags.setText(mDataset.get(position).getMpaaRating());
         holder.date.setText(mDataset.get(position).getPublicationDate());
@@ -78,5 +82,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public int getItemCount() {
         return mDataset.size();
+    }
+
+    public Uri getUri (int position) {
+        return Uri.parse(mDataset.get(position).getLink().getUrl());
     }
 }

@@ -1,13 +1,19 @@
 package darena13.moviereviews;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,8 +34,10 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    List<Result> reviews = new ArrayList<>();
-    NYTimesAPI networkAPI;
+    private Button readMoreButton;
+
+    private List<Result> reviews = new ArrayList<>();
+    private NYTimesAPI networkAPI;
 
 
     @Override
@@ -66,7 +74,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNext(Response value) {
                 Toast.makeText(getApplicationContext(),"onNext", Toast.LENGTH_SHORT).show();
-                reviews.add(value.getResults().get(0));
+                int size = value.getResults().size();
+                for (int i = 0; i < size; i++) {
+                    reviews.add(value.getResults().get(i));
+                }
                 mAdapter.notifyDataSetChanged();
             }
 
@@ -85,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
 
@@ -94,10 +104,25 @@ public class MainActivity extends AppCompatActivity {
 
         mAdapter = new MyAdapter(reviews);
         mRecyclerView.setAdapter(mAdapter);
+
+//        readMoreButton = (Button) findViewById(R.id.read_more);
+//        readMoreButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//            }
+//        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    public void readMore(View view) {
+        Uri uri = Uri.parse("http://www.google.com");
+//        Uri uri = Uri.parse(reviews.get(position).getLink().getUrl());
+
+        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+        startActivity(intent);
     }
 }
