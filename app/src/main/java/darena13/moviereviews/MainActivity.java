@@ -4,13 +4,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import darena13.moviereviews.Model.Review;
+import darena13.moviereviews.Model.Response;
+import darena13.moviereviews.Model.Result;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -26,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
-    List<Review> reviews = new ArrayList<>();
+    List<Result> reviews = new ArrayList<>();
     NYTimesAPI networkAPI;
 
 
@@ -51,28 +53,33 @@ public class MainActivity extends AppCompatActivity {
         networkAPI = retrofit.create(NYTimesAPI.class);
 
         String myApi = "2982d29303d1454fbdef02fb8e4900d2";
-        Observable<List<Review>> reviewsObservable = networkAPI.getReviews(myApi)
+        Observable<Response> reviewsObservable = networkAPI.getReviews(myApi)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
 
-        reviewsObservable.subscribe(new Observer<List<Review>>(){
+        reviewsObservable.subscribe(new Observer<Response>(){
             @Override
             public void onSubscribe(Disposable d) {
-
+                Toast.makeText(getApplicationContext(),"onSubscribe", Toast.LENGTH_SHORT).show();
             }
 
             @Override
-            public void onNext(List<Review> value) {
-                reviews = value;
+            public void onNext(Response value) {
+                Toast.makeText(getApplicationContext(),"onNext", Toast.LENGTH_SHORT).show();
+                reviews.add(value.getResults().get(0));
+                mAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onError(Throwable e){
+                Toast.makeText(getApplicationContext(),"onError" + e, Toast.LENGTH_SHORT).show();
+//                Log.e()
                 //handle error
             }
 
             @Override
             public void onComplete() {
+                Toast.makeText(getApplicationContext(),"onComplete", Toast.LENGTH_SHORT).show();
 
             }
 

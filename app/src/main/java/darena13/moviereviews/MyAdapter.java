@@ -7,7 +7,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import darena13.moviereviews.Model.Review;
+import darena13.moviereviews.Model.Response;
+import darena13.moviereviews.Model.Result;
 
 
 /**
@@ -15,7 +16,7 @@ import darena13.moviereviews.Model.Review;
  */
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-    private List<Review> mDataset;
+    private List<Result> mDataset;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
@@ -25,7 +26,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         }
     }
 
-    public MyAdapter(List<Review> myDataset) {
+    public MyAdapter(List<Result> myDataset) {
         mDataset = myDataset;
     }
 
@@ -40,7 +41,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.mTextView.setText(mDataset.get(position).getStatus());
+        holder.mTextView.setText(mDataset.get(position).getDisplayTitle());
 
     }
 

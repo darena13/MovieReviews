@@ -1,12 +1,9 @@
 package darena13.moviereviews;
 
-import java.util.List;
-
-import darena13.moviereviews.Model.Review;
+import darena13.moviereviews.Model.Response;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
-import retrofit2.http.Query;
 
 /**
  * Created by darena13 on 08.08.2017.
@@ -15,9 +12,6 @@ import retrofit2.http.Query;
 public interface NYTimesAPI {
 //    String END_POINT = "https://api.nytimes.com/svc/movies/v2/";
 
-//    @GET("reviews/all.json")
-//    Observable<List<Review>> getReviews(@Header("api-key") String MyApi);
-
     @GET("reviews/all.json")
-    Observable<List<Review>> getReviews(@Header("api-key") String MyApiKey);
+    Observable<Response> getReviews(@Header("api-key") String MyApiKey);
 }

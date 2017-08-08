@@ -9,7 +9,7 @@ import java.util.List;
  * Created by darena13 on 08.08.2017.
  */
 
-public class Review {
+public class Response {
     @SerializedName("status")
     @Expose
     private String status;
