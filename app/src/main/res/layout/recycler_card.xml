@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/cardview_dark_background"
     android:orientation="vertical"
-    android:padding="10dp"
-    android:background="@color/cardview_dark_background">
+    android:padding="10dp">
 
     <android.support.v7.widget.CardView xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/card_view"
@@ -30,28 +30,28 @@
 
             <TextView
                 android:id="@+id/title"
+                style="?android:listSeparatorTextViewStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/picture"
-                android:text="Title"
-                android:textSize="23sp"
+                android:layout_marginEnd="10sp"
+                android:layout_marginStart="10sp"
                 android:layout_marginTop="15sp"
                 android:paddingBottom="7sp"
-                style="?android:listSeparatorTextViewStyle"
-                android:layout_marginEnd="10sp"
-                android:layout_marginStart="10sp"/>
+                android:text="Title"
+                android:textSize="23sp" />
 
             <TextView
                 android:id="@+id/tags"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/title"
-                android:text="PG-13"
-                android:layout_marginTop="15sp"
                 android:layout_marginStart="25sp"
+                android:layout_marginTop="15sp"
                 android:background="@color/colorNice"
                 android:padding="2sp"
-                android:textSize="11sp"/>
+                android:text="PG-13"
+                android:textSize="11sp" />
 
             <TextView
                 android:id="@+id/date"
@@ -59,32 +59,32 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/title"
-                android:text="10.10.2010"
-                android:paddingTop="15sp"
                 android:layout_marginEnd="10sp"
                 android:layout_marginStart="20sp"
-                android:textSize="11sp"/>
+                android:paddingTop="15sp"
+                android:text="10.10.2010"
+                android:textSize="11sp" />
 
             <TextView
                 android:id="@+id/headline"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/date"
-                android:text="Headline"
-                android:layout_marginTop="15sp"
+                android:layout_marginEnd="25sp"
                 android:layout_marginStart="25sp"
-                android:layout_marginEnd="25sp"/>
+                android:layout_marginTop="15sp"
+                android:text="Headline" />
 
             <TextView
                 android:id="@+id/summary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/headline"
-                android:text="Summary"
-                android:layout_marginTop="15sp"
-                android:layout_marginStart="25sp"
+                android:layout_marginBottom="15sp"
                 android:layout_marginEnd="25sp"
-                android:layout_marginBottom="15sp"/>
+                android:layout_marginStart="25sp"
+                android:layout_marginTop="15sp"
+                android:text="Summary" />
 
             <Button
                 android:id="@+id/read_more"
@@ -92,13 +92,12 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_below="@+id/summary"
-                android:text="@string/read_more"
-                android:onClick="readMore"
-                android:background="@android:color/transparent"
-                android:textColor="@color/colorAccent"
+                android:layout_marginBottom="10sp"
                 android:layout_marginEnd="20sp"
                 android:layout_marginStart="20sp"
-                android:layout_marginBottom="10sp"/>
+                android:background="@android:color/transparent"
+                android:text="@string/read_more"
+                android:textColor="@color/colorAccent" />
 
         </RelativeLayout>
 

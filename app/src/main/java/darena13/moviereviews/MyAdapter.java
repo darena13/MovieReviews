@@ -65,8 +65,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        Context imageContext = holder.picture.getContext();
+    public void onBindViewHolder(ViewHolder holder, final int position) {
+        final Context imageContext = holder.picture.getContext();
         String imageURL = mDataset.get(position).getMultimedia().getSrc();
         Glide.with(imageContext).load(imageURL).placeholder(R.drawable.empty_pic_210x140).into(holder.picture);
 
@@ -75,6 +75,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         holder.date.setText(mDataset.get(position).getPublicationDate());
         holder.headline.setText(mDataset.get(position).getHeadline());
         holder.summary.setText(mDataset.get(position).getSummaryShort());
+
+        holder.readMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            Uri uri = Uri.parse(mDataset.get(position).getLink().getUrl());
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                imageContext.startActivity(intent);
+            }
+        });
+
     }
 
     @Override
@@ -82,7 +92,4 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return mDataset.size();
     }
 
-    public Uri getUri (int position) {
-        return Uri.parse(mDataset.get(position).getLink().getUrl());
-    }
 }

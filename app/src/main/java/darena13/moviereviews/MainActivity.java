@@ -101,12 +101,6 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new MyAdapter(reviews);
         mRecyclerView.setAdapter(mAdapter);
 
-//        readMoreButton = (Button) findViewById(R.id.read_more);
-//        readMoreButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//            }
-//        });
     }
 
     @Override
@@ -114,11 +108,4 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
     }
 
-    public void readMore(View view) {
-        Uri uri = Uri.parse("http://www.google.com");
-//        Uri uri = Uri.parse(reviews.get(position).getLink().getUrl());
-
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(intent);
-    }
 }
