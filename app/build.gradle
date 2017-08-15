@@ -1,3 +1,14 @@
+Properties props = new Properties()
+File propsFile = file('nyapikey.properties')
+if (propsFile.exists()) {
+    props.load(propsFile.newDataInputStream())
+} else if (System.env.MY_API_KEY != null) {
+    props.setProperty("myApiKey", System.env.MY_API_KEY)
+} else {
+    throw new GradleException("Missing nyapikey.properties, check the nyapikey.properties")
+}
+
+
 apply plugin: 'com.android.application'
 
 android {
@@ -15,6 +26,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField "String", "MY_API_KEY", "\"${props.getProperty("myApiKey")}\""
         }
     }
     packagingOptions {

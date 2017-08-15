@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         networkAPI = retrofit.create(NYTimesAPI.class);
 
-        String myApi = "2982d29303d1454fbdef02fb8e4900d2";
+        String myApi = BuildConfig.MY_API_KEY;
         Observable<Response> reviewsObservable = networkAPI.getReviews(myApi)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread());
